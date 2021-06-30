@@ -4,6 +4,14 @@ DEPSDIR				= ./deps
 
 SRCS				= $(addprefix $(SRCSDIR)/, \
 						so_long.c \
+						my_mlx_utils.c \
+						parser.c \
+						set_parsed.c \
+						check_map.c \
+						player_move.c \
+						key_hooks.c \
+						draw_map.c \
+						error.c \
 						)
 
 OBJS				= $(SRCS:.c=.o)
@@ -14,7 +22,7 @@ NAME				= so_long
 
 CC 					= gcc
 RM 					= rm -f
-CFLAGS				= -Wall -Wextra -Werror -O2 #-g -fsanitize=address
+CFLAGS				= -Wall -Wextra -Werror -fsanitize=address
 CPPFLAGS			= -MMD -I. -I./includes
 MLX_FLAGS			= -framework OpenGL -framework AppKit -lz
 
@@ -69,4 +77,4 @@ sc:
 
 #.SILENT:
 # gcc -Wall -Wextra -Werror -framework OpenGL -framework AppKit -lz 
-# -L./libft -lft -L./mlx -lmlx -g sources/*.c -o cub3D
+# -L./libft -lft -L./mlx -lmlx -g sources/*.c -o so_long
