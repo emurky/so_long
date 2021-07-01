@@ -125,13 +125,15 @@ typedef struct s_all
 	int			flags[4];
 	char		**map;
 	t_pnt		max_map;
-	t_pnt		plr_init_pos;
-	double		plr_init_dir;
 
 	t_plr		plr;
+
+	int			moves_counter;
+	double		moves_buffer;
+	int			welcome;
 	// t_ray		ray;
 
-	int			keys[6];
+	int			keys[5];
 }				t_all;
 
 #endif

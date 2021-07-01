@@ -11,6 +11,4 @@
 # define KEY_DOWN	125
 # define KEY_ESC	53
 
-# define KEY_R		15
-
 #endif

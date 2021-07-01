@@ -6,10 +6,10 @@
 # define EXT			2
 # define COL			3
 
-# define MOVE_SPEED		0.06
+# define MOVE_SPEED		0.042
 
-# define GRID			false
-# define SCALE			70
+# define GRID			true
+# define SCALE			84
 # define SPRITE_SCALE	2
 
 #endif

@@ -5,7 +5,7 @@ void	structure_init(t_all *all)
 	int		i;
 
 	i = 0;
-	while (i < 6)
+	while (i < 5)
 		all->keys[i++] = 0;
 	i = 0;
 	while (i < 4)
@@ -16,6 +16,10 @@ void	structure_init(t_all *all)
 	all->img.img = NULL;
 	all->win = NULL;
 	all->max_map = (t_pnt){0, 0};
+
+	all->moves_counter = 0;
+	all->moves_buffer = 0.0;
+	all->welcome = 300;
 }
 
 int	renderer(t_all *all)
@@ -24,6 +28,13 @@ int	renderer(t_all *all)
 	keys_handler(all);
 	draw_map(all);
 	mlx_put_image_to_window(all->mlx, all->win, all->img.img, 0, 0);
+	if (all->welcome > 0)
+	{
+		mlx_string_put(all->mlx, all->win,
+		all->window.x / 2 - SCALE * 0.8, all->window.y / 2,
+		GREEN, "Welcome to \"So_long\"");
+		all->welcome--;
+	}
 	return (0);
 }
 
@@ -47,6 +58,7 @@ int	main(int argc, char **argv)
 		print_error_exit("Invalid map extension\n");
 	parser(&all, argv[1]);
 	mlx_start(&all);
+
 	hooks_and_loops(&all);
 	return (0);
 }

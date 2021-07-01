@@ -32,7 +32,6 @@ void	free_malloc_pointers(t_all *all)
 void	clean_all(t_all *all)
 {
 	free_array(all->map);
-	printf("Map was freed\n");
 	clean_mlx(all);
 	free_malloc_pointers(all);
 }

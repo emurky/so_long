@@ -27,14 +27,32 @@ int	wall_collision_x(t_all *all, double dir)
 		== '1');
 }
 
+void	count_movements(t_all *all, double movement)
+{
+	all->moves_buffer += fabs(movement);
+	if (all->moves_buffer >= SCALE)
+	{
+		all->moves_counter++;
+		all->moves_buffer -= SCALE;
+		printf("%d move\n", all->moves_counter);
+	}
+}
+
 void	move_player(t_all *all, double dir)
 {
+	double	movement;
+
+	movement = 0.0;
 	if (!wall_collision_x(all, dir))
 	{
-		all->plr.x += cos(all->plr.dir + dir) * MOVE_SPEED * SCALE;
+		movement = cos(all->plr.dir + dir) * MOVE_SPEED * SCALE;
+		all->plr.x += movement;
+		count_movements(all, movement);
 	}
 	if (!wall_collision_y(all, dir))
 	{
-		all->plr.y -= sin(all->plr.dir + dir) * MOVE_SPEED * SCALE;
+		movement = sin(all->plr.dir + dir) * MOVE_SPEED * SCALE;
+		all->plr.y -= movement;
+		count_movements(all, movement);
 	}
 }

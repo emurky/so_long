@@ -52,5 +52,4 @@ void	clean_mlx(t_all *all)
 	// 		mlx_destroy_image(all->mlx, all->tex[i].img);
 	// 	i++;
 	// }
-	printf("MiniLibX items were freed\n");
 }
