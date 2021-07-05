@@ -38,8 +38,10 @@ void	clean_all(t_all *all)
 
 void	print_error_exit(char *err_str)
 {
-	write(2, "Error\n", 6);
-	write(2, err_str, ft_strlen(err_str));
+	// write(2, "Error\n", 6);
+	// write(2, err_str, ft_strlen(err_str));
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd(err_str, 2);
 	exit(EXIT_FAILURE);
 }
 
@@ -49,13 +51,17 @@ void	leave(int error, char *err_str, t_all *all, char **array)
 		free_array(array);
 	if (error)
 	{
-		write(2, "Error\n", 6);
-		write(2, err_str, ft_strlen(err_str));
+		// write(2, "Error\n", 6);
+		// write(2, err_str, ft_strlen(err_str));
+		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd(err_str, 2);
 		clean_all(all);
-		write(2, "So long...\n", 11);
+		// write(2, "So long...\n", 11);
+		ft_putstr_fd("So long...\n", 2);
 		exit(EXIT_FAILURE);
 	}
 	clean_all(all);
-	write(1, "So long and thanks for all the fish!\n", 37);
+	// write(1, "So long and thanks for all the fish!\n", 37);
+	ft_putstr_fd("So long and thanks for all the fish!\n", 1);
 	exit(EXIT_SUCCESS);
 }

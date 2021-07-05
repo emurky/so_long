@@ -1,12 +1,5 @@
 #include "so_long.h"
 
-int	print_key(int key, t_all *all)
-{
-	(void)all;
-	printf("%d was pressed\n", key);
-	return (0);
-}
-
 int	close_window(t_all *all)
 {
 	leave(NO_ERR, NULL, all, NULL);
@@ -54,6 +47,5 @@ void	keys_handler(t_all *all)
 	else if (all->keys[3])
 		move_player(all, -M_PI_2);
 	if (all->keys[4])
-	{ 	printf("%d colls\n", all->collectibles);
-		leave(NO_ERR, NULL, all, NULL);}
+		leave(NO_ERR, NULL, all, NULL);
 }
