@@ -41,17 +41,18 @@ void	check_map(t_all *all)
 	t_map	map;
 
 	map = (t_map){all->map, all->max_map.x, all->max_map.y};
-	set_player(all, all->map);
+	set_map_chars(all, all->map);
 	if (!check_continuity(map))
 		leave(ERR, ERR_MAP_CLSD, all, NULL);
 	if (!all->flags[PLR])
 		leave(ERR, ERR_PLR_NON, all, NULL);
 	if (!all->flags[EXT])
 		leave(ERR, ERR_EXT_NON, all, NULL);
-	if (!all->flags[COL])
+	if (!all->collectibles)
 		leave(ERR, ERR_COL, all, NULL);
 	all->window.x = all->max_map.x * SCALE;
 	all->window.y = all->max_map.y * SCALE;
+	all->flags[EXT] = false;
 }
 
 void	get_map_line(t_all *all, t_list **head, int line_read)

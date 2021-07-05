@@ -54,5 +54,6 @@ void	keys_handler(t_all *all)
 	else if (all->keys[3])
 		move_player(all, -M_PI_2);
 	if (all->keys[4])
-		leave(NO_ERR, NULL, all, NULL);
+	{ 	printf("%d colls\n", all->collectibles);
+		leave(NO_ERR, NULL, all, NULL);}
 }

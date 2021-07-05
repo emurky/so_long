@@ -11,21 +11,21 @@ void	set_player_dir(t_all *all, double dir)
 	all->plr.dir = dir;
 }
 
-int	wall_collision_y(t_all *all, double dir)
+int	wall_collision(t_all *all, double dir)
 {
 	return (all->map
-		[(int)floor(all->plr.y / SCALE - sin(all->plr.dir + dir) * 0.52)]
-		[(int)floor(all->plr.x / SCALE)]
+		[(int)floor(all->plr.y / SCALE - sin(all->plr.dir + dir) * COLL)]
+		[(int)floor(all->plr.x / SCALE + cos(all->plr.dir + dir) * COLL)]
 		== '1');
 }
 
-int	wall_collision_x(t_all *all, double dir)
-{
-	return (all->map
-		[(int)floor(all->plr.y / SCALE)]
-		[(int)floor(all->plr.x / SCALE + cos(all->plr.dir + dir) * 0.52)]
-		== '1');
-}
+// int	wall_collision_x(t_all *all, double dir)
+// {
+// 	return (all->map
+// 		[(int)floor(all->plr.y / SCALE - sin(all->plr.dir + dir) * COLL)]
+// 		[(int)floor(all->plr.x / SCALE + cos(all->plr.dir + dir) * COLL)]
+// 		== '1');
+// }
 
 void	count_movements(t_all *all, double movement)
 {
@@ -43,13 +43,13 @@ void	move_player(t_all *all, double dir)
 	double	movement;
 
 	movement = 0.0;
-	if (!wall_collision_x(all, dir))
+	if (!wall_collision(all, dir))
 	{
 		movement = cos(all->plr.dir + dir) * MOVE_SPEED * SCALE;
 		all->plr.x += movement;
 		count_movements(all, movement);
 	}
-	if (!wall_collision_y(all, dir))
+	if (!wall_collision(all, dir))
 	{
 		movement = sin(all->plr.dir + dir) * MOVE_SPEED * SCALE;
 		all->plr.y -= movement;

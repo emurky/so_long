@@ -4,12 +4,16 @@
 # define EOM			0			/* end of map */
 # define PLR			1
 # define EXT			2
-# define COL			3
+// # define COL			3
 
 # define MOVE_SPEED		0.042
+# define SPEED_COEF		5000000.0
 
-# define GRID			true
-# define SCALE			84
+# define GRID			false
+# define SCALE			64
 # define SPRITE_SCALE	2
+
+# define EAT_RAD		0.0
+# define COLL			0.51
 
 #endif

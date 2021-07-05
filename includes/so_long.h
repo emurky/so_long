@@ -47,7 +47,7 @@ void		set_window_size(t_all *all);
 void		set_nswes(char **nswes, int *flag, char *token);
 void		set_floor_ceil(t_all *all, char **tokens, int fc, int color);
 void		init_player(t_all *all, int i, int j);
-void		set_player(t_all *all, char **map);
+void		set_map_chars(t_all *all, char **map);
 
 /*			parse_map.c */
 void		malloc_map(t_all *all, t_list **head);
@@ -71,8 +71,9 @@ int			isvalid_extension(char *file, const char *ext);
 /*			player_move.c */
 void		set_player_pos(t_all *all, int x, int y);
 void		set_player_dir(t_all *all, double dir);
-int			wall_collision_y(t_all *all, double dir);
-int			wall_collision_x(t_all *all, double dir);
+int			wall_collision(t_all *all, double dir);
+// int			wall_collision_y(t_all *all, double dir);
+// int			wall_collision_x(t_all *all, double dir);
 void		move_player(t_all *all, double dir);
 
 /*			key_hooks.c */
@@ -83,16 +84,16 @@ int			key_released(int key, t_all *all);
 void		keys_handler(t_all *all);
 
 /*			raycaster.c */
-void		ray_init(t_all *all, t_ray *ray);
-void		draw_floor_ceiling(t_all *all);
+// void		ray_init(t_all *all, t_ray *ray);
+// void		draw_floor_ceiling(t_all *all);
 void		draw_map(t_all *all);
-void		raycaster(t_all *all, t_ray *ray);
+// void		raycaster(t_all *all, t_ray *ray);
 
 /*			raycasting_itself.c */
-void		steps_increment(t_ray *ray);
-void		ray_calc(t_ray *ray);
-void		perform_dda(t_all *all, t_ray *ray);
-void		line_lenth_calc(t_ray *ray);
+// void		steps_increment(t_ray *ray);
+// void		ray_calc(t_ray *ray);
+// void		perform_dda(t_all *all, t_ray *ray);
+// void		line_lenth_calc(t_ray *ray);
 
 /*			draw_map.c */
 void		draw_square(t_img *img, int width, t_pnt pos, int color);
@@ -102,21 +103,21 @@ void		draw_map_sprites(t_all *all, t_pnt *pos);
 void		draw_map_squares(t_all *all, char **map);
 
 /*			texturer.c */
-void		textures_init(t_all *all);
-void		which_nswe_wall_side(t_all *all, t_ray *ray, t_tex **tex);
-void		textured_vert_line_h_calc(t_all *all, t_ray *ray, t_tex *tex);
-void		texturing(t_all *all, t_ray *ray);
+// void		textures_init(t_all *all);
+// void		which_nswe_wall_side(t_all *all, t_ray *ray, t_tex **tex);
+// void		textured_vert_line_h_calc(t_all *all, t_ray *ray, t_tex *tex);
+// void		texturing(t_all *all, t_ray *ray);
 
 /*			draw_sprites.c */
-void		sprites_init(t_all *all, t_ray *ray, t_spr *sprites);
-void		sprites_projection(t_ray *ray, t_spr *sprites);
-void		sprites_rendering(t_all *all, t_ray *ray);
-void		draw_sprites(t_all *all, t_ray *ray);
+// void		sprites_init(t_all *all, t_ray *ray, t_spr *sprites);
+// void		sprites_projection(t_ray *ray, t_spr *sprites);
+// void		sprites_rendering(t_all *all, t_ray *ray);
+// void		draw_sprites(t_all *all, t_ray *ray);
 
 /*			sprites_utils.c */
-void		swap_sprites(t_spr *a, t_spr *b);
-void		sprites_counting(t_all *all);
-void		quicksort_sprites(t_spr *sprites, int first, int last);
+// void		swap_sprites(t_spr *a, t_spr *b);
+// void		sprites_counting(t_all *all);
+// void		quicksort_sprites(t_spr *sprites, int first, int last);
 
 /*			utils.c */
 int			create_rgb(int r, int g, int b);
@@ -126,10 +127,10 @@ int			scale_y(double index);
 void		is_enough_space_for_map(t_all *all);
 
 /*			screenshot.c */
-void		intset_little_endian(char *dest, uint32_t n, int size);
-void		write_headers(t_all *all, int fd);
-void		write_pixel_data(t_all *all, int fd);
-void		save_screenshot(t_all *all);
+// void		intset_little_endian(char *dest, uint32_t n, int size);
+// void		write_headers(t_all *all, int fd);
+// void		write_pixel_data(t_all *all, int fd);
+// void		save_screenshot(t_all *all);
 
 /*			error.c */
 void		free_array(char **array);
@@ -139,7 +140,7 @@ void		print_error_exit(char *err_str);
 void		leave(int error, char *err_str, t_all *all, char **array);
 
 /*			unused.c */
-void		fps(t_all *all);
-void		frames_counter(t_all *all);
+// void		fps(t_all *all);
+// void		frames_counter(t_all *all);
 
 #endif

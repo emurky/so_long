@@ -9,6 +9,10 @@ void	set_window_size(t_all *all)
 	mlx_get_screen_size(&display_res.x, &display_res.y);
 	if (display_res.x < all->window.x || display_res.y < all->window.y)
 		leave(ERR, ERR_WIN, all, NULL);
+	// all->move_speed =
+	// 	(int)((double)(all->window.x * all->window.y) / SPEED_COEF * 1000);
+	// all->move_speed /= 1000;
+	// printf("%f\n", all->move_speed);
 }
 
 void	init_player(t_all *all, int i, int j)
@@ -16,14 +20,14 @@ void	init_player(t_all *all, int i, int j)
 	if (!all->flags[PLR])
 	{
 		set_player_pos(all, i, j);
-		set_player_dir(all, M_PI_2);
+		all->plr.dir = M_PI_2;
 		all->flags[PLR] = true;
 	}
 	else
 		leave(ERR, ERR_PLR_DBL, all, NULL);
 }
 
-void	set_player(t_all *all, char **map)
+void	set_map_chars(t_all *all, char **map)
 {
 	int		i;
 	int		j;
@@ -44,7 +48,7 @@ void	set_player(t_all *all, char **map)
 					leave(ERR, ERR_EXT, all, NULL);
 			}
 			else if (map[j][i] == 'C')
-				all->flags[COL] = true;
+				all->collectibles++;
 			i++;
 		}
 		j++;

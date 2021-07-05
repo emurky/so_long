@@ -22,7 +22,7 @@ NAME				= so_long
 
 CC 					= gcc
 RM 					= rm -f
-CFLAGS				= -Wall -Wextra -Werror -fsanitize=address
+CFLAGS				= -Wall -Wextra -Werror -g -fsanitize=address
 CPPFLAGS			= -MMD -I. -I./includes
 MLX_FLAGS			= -framework OpenGL -framework AppKit -lz
 
