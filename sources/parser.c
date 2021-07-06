@@ -109,5 +109,6 @@ void	parser(t_all *all, char *file_cub)
 	parse_map(all, fd, line_read);
 	check_map(all);
 	set_window_size(all);
+	// my_mlx_tex_to_image(all, &all->tex, "textures/sea_tile.xpm");
 	close(fd);
 }

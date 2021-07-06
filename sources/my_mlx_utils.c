@@ -8,7 +8,7 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	my_mlx_pixel_get(t_tex *tex, int x, int y)
+int	my_mlx_pixel_get(t_img *tex, int x, int y)
 {
 	char	*pixel;
 
@@ -16,16 +16,16 @@ int	my_mlx_pixel_get(t_tex *tex, int x, int y)
 	return (*(unsigned int *)pixel);
 }
 
-void	my_mlx_tex_to_image(t_all *all, t_tex *tex, char **path)
+void	my_mlx_tex_to_image(t_all *all, t_img *tex, char *path)
 {
-	tex->img = NULL;
-	tex->addr = NULL;
+	// tex->img = NULL;
+	// tex->addr = NULL;
 	tex->img
-		= mlx_xpm_file_to_image(all->mlx, *path, &tex->w, &tex->h);
+		= mlx_xpm_file_to_image(all->mlx, path, &tex->w, &tex->h);
 	tex->addr
 		= mlx_get_data_addr(tex->img, &tex->bpp, &tex->linelen, &tex->endian);
-	free(*path);
-	*path = NULL;
+	// free(*path);
+	// *path = NULL;
 }
 
 void	mlx_start(t_all *all)

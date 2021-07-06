@@ -11,7 +11,6 @@
 # define ERR_MAP_CLSD	"Map must be closed/surrounded by walls\n"
 # define ERR_PLR_DBL	"Only one player could exist on the map\n"
 # define ERR_PLR_NON	"No player on the map\n"
-# define ERR_SCRNSH		"Failed to save a screenshot\n"
 
 # define ERR_NOT_RECT	"Map is not rectangular\n"
 # define ERR_EXT		"Only one exit could exist on the map\n"

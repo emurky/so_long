@@ -10,8 +10,10 @@
 # define SPEED_COEF		5000000.0
 
 # define GRID			false
-# define SCALE			64
+# define SCALE			128
 # define SPRITE_SCALE	2
+
+# define TEX_RES		128
 
 # define EAT_RAD		0.0
 # define COLL			0.51

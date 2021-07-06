@@ -16,6 +16,8 @@
 # include "mlx/mlx.h"
 # include "libft/libft.h"
 
+void	draw_textured_square(t_all *all, t_img *tex, t_pnt pos);
+
 /*			so_long.c */
 void		structure_init(t_all *all);
 void		frame_init(t_all *all);
@@ -24,8 +26,8 @@ void		hooks_and_loops(t_all *all);
 
 /*			my_mlx_utils.c */
 void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
-int			my_mlx_pixel_get(t_tex *img, int x, int y);
-void		my_mlx_tex_to_image(t_all *all, t_tex *tex, char **path);
+int			my_mlx_pixel_get(t_img *img, int x, int y);
+void		my_mlx_tex_to_image(t_all *all, t_img *tex, char *path);
 void		mlx_start(t_all *all);
 void		clean_mlx(t_all *all);
 

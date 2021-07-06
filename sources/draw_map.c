@@ -1,5 +1,10 @@
 #include "so_long.h"
 
+int	get_t(int trgb)
+{
+	return (trgb & (0xFF << 24));
+}
+
 void	draw_square(t_img *img, int width, t_pnt pos, int color)
 {
 	int		i;
@@ -12,6 +17,34 @@ void	draw_square(t_img *img, int width, t_pnt pos, int color)
 		while (i < width + pos.x - GRID)
 		{
 			my_mlx_pixel_put(img, i, j, color);
+			i++;
+		}
+		j++;
+	}
+}
+
+void	draw_textured_square(t_all *all, t_img *tex, t_pnt pos)
+{
+	int		i;
+	int		j;
+	// (void)pos;
+	int pixel;		
+	// t_pnt tex_res;
+// t_img	*tex = mlx_xpm_file_to_image(all->mlx, "textures/sea_tile.xpm", &tex_res.x, &tex_res.y);
+// mlx_put_image_to_window(all->mlx, all->win, tex, 0, 0);
+			// all->pixel = my_mlx_pixel_get(all->tex, 1300, 12890);
+			// printf("%X color\n", all->pixel);
+// my_mlx_tex_to_image(all, &all->tex, "textures/sea_tile.xpm");
+	j = pos.y;
+	while (j < SCALE + pos.y - GRID)
+	{
+		i = pos.x;
+		while (i < SCALE + pos.x - GRID)
+		{
+			pixel = my_mlx_pixel_get(tex, (i - pos.x) / all->tex_coef, (j - pos.y) / all->tex_coef);
+			// printf("%d i %d j\n", (int)((i - pos.x) / all->tex_coef), (int)((j - pos.y) / all->tex_coef));
+			if (!get_t(pixel))
+				my_mlx_pixel_put(&all->img, i, j, pixel);
 			i++;
 		}
 		j++;
@@ -42,13 +75,18 @@ void	draw_map_squares(t_all *all, char **map)
 		pos.x = 0;
 		while (map[j][i])
 		{
+			// if (map[j][i] == '1')
+			// 	draw_square(&all->img, SCALE, pos, DARK_GREY);
+				// draw_textured_square(all, pos);
+			if (is_interior(map[j][i]) || map[j][i] == '1')
+				// draw_square(&all->img, SCALE, pos, WHITE);
+				draw_textured_square(all, &all->tex, pos);
 			if (map[j][i] == '1')
-				draw_square(&all->img, SCALE, pos, DARK_GREY);
-			else if (map[j][i] == 'C')
-				draw_map_sprites(all, &pos);
-			else if (map[j][i] == '0' || map[j][i] == 'P')
-				draw_square(&all->img, SCALE, pos, WHITE);
-			else if (map[j][i] == 'E')
+				draw_textured_square(all, &all->tex4, pos);
+			if (map[j][i] == 'C')
+				// draw_map_sprites(all, &pos);
+				draw_textured_square(all, &all->tex3, pos);
+			if (map[j][i] == 'E')
 				draw_square(&all->img, SCALE, pos, RED);
 			pos.x += SCALE;
 			i++;
@@ -65,7 +103,8 @@ void	draw_map(t_all *all)
 	pos.x = all->plr.x - SCALE / 2;
 	pos.y = all->plr.y - SCALE / 2;
 	draw_map_squares(all, all->map);
-	draw_square(&all->img, SCALE, pos, AMBER);
+	draw_textured_square(all, &all->tex2, pos);
+	// draw_square(&all->img, SCALE, pos, AMBER);
 	// printf("%f posx %f posy\n", all->plr.x, all->plr.y);
 	// cast_rays(all, all->map, RAYCOUNT, SUNRAY);
 	// draw_ray(all, all->map, RED);

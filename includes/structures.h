@@ -28,6 +28,8 @@ typedef struct s_img
 	int			bpp;
 	int			linelen;
 	int			endian;
+	int			w;
+	int			h;
 }				t_img;
 
 typedef struct s_plr
@@ -45,16 +47,16 @@ typedef struct s_spr
 	int			order;
 }				t_spr;
 
-typedef struct s_tex
-{
-	void		*img;
-	char		*addr;
-	int			bpp;
-	int			linelen;
-	int			endian;
-	int			w;
-	int			h;
-}				t_tex;
+// typedef struct s_tex
+// {
+// 	void		*img;
+// 	char		*addr;
+// 	int			bpp;
+// 	int			linelen;
+// 	int			endian;
+// 	int			w;
+// 	int			h;
+// }				t_tex;
 
 // typedef struct s_ray
 // {
@@ -129,6 +131,13 @@ typedef struct s_all
 	int			collectibles;
 	t_plr		plr;
 
+t_img	tex;
+t_img	tex2;
+t_img	tex3;
+t_img	tex4;
+	double		tex_coef;
+	int			pixel;
+	double		movement;
 	double		move_speed;
 	int			moves_counter;
 	double		moves_buffer;

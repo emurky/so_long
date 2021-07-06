@@ -17,7 +17,13 @@ void	structure_init(t_all *all)
 	all->win = NULL;
 	all->max_map = (t_pnt){0, 0};
 
+	all->tex_coef = (double)SCALE / (double)TEX_RES;
+	// t_pnt tex_res;
+	// all->tex.img = mlx_xpm_file_to_image(all->mlx, "./textures/sea_tile.xpm", &tex_res.x, &tex_res.y);
+	// all->tex.addr = mlx_get_data_addr(all->tex.img, &all->tex.bpp, &all->tex.linelen, &all->tex.endian);
+// printf("%f\n", all->tex_coef);
 	all->collectibles = 0;
+	all->movement = 0.0;
 	all->moves_counter = 0;
 	all->moves_buffer = 0.0;
 	all->welcome = 120;
@@ -97,9 +103,12 @@ int	renderer(t_all *all)
 	keys_handler(all);
 	draw_map(all);
 	check_collectibles(all);
+	// draw_textured_square(all, (t_pnt){50,50});
+	// printf("%X color\n", my_mlx_pixel_get(&all->img, 100, 100));
 	mlx_put_image_to_window(all->mlx, all->win, all->img.img, 0, 0);
 	welcome_sign(all);
 	check_exit(all);
+	
 	return (0);
 }
 
@@ -112,20 +121,28 @@ void	hooks_and_loops(t_all *all)
 	mlx_loop(all->mlx);
 }
 
+void	textures_init(t_all *all)
+{
+	my_mlx_tex_to_image(all, &all->tex, "textures/sea_tile.xpm");
+	my_mlx_tex_to_image(all, &all->tex2, "textures/dolphin.xpm");
+	my_mlx_tex_to_image(all, &all->tex3, "textures/fish2.xpm");
+	my_mlx_tex_to_image(all, &all->tex4, "textures/sea_weed.xpm");
+}
+
 int	main(int argc, char **argv)
 {
 	t_all	all;
 
-	structure_init(&all);
 	if (argc != 2)
 		print_error_exit("Wrong number of arguments\n");
 	if (!isvalid_extension(argv[1], ".ber"))
 		print_error_exit("Invalid map extension\n");
+	structure_init(&all);
 	parser(&all, argv[1]);
 	mlx_start(&all);
 
 // printf("%d win width %d win height %d multipl\n", all.window.x, all.window.y, all.window.x * all.window.y);
-
+	textures_init(&all);
 	hooks_and_loops(&all);
 	return (0);
 }

@@ -78,3 +78,4 @@ sc:
 #.SILENT:
 # gcc -Wall -Wextra -Werror -framework OpenGL -framework AppKit -lz 
 # -L./libft -lft -L./mlx -lmlx -g sources/*.c -o so_long
+# leaks --atExit -- ./so_long map.ber

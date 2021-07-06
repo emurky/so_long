@@ -40,19 +40,19 @@ void	count_movements(t_all *all, double movement)
 
 void	move_player(t_all *all, double dir)
 {
-	double	movement;
+	// double	movement;
 
-	movement = 0.0;
+	// movement = 0.0;
 	if (!wall_collision(all, dir))
 	{
-		movement = cos(all->plr.dir + dir) * MOVE_SPEED * SCALE;
-		all->plr.x += movement;
-		count_movements(all, movement);
+		all->movement = cos(all->plr.dir + dir) * MOVE_SPEED * SCALE;
+		all->plr.x += all->movement;
+		count_movements(all, all->movement);
 	}
 	if (!wall_collision(all, dir))
 	{
-		movement = sin(all->plr.dir + dir) * MOVE_SPEED * SCALE;
-		all->plr.y -= movement;
-		count_movements(all, movement);
+		all->movement = sin(all->plr.dir + dir) * MOVE_SPEED * SCALE;
+		all->plr.y -= all->movement;
+		count_movements(all, all->movement);
 	}
 }
