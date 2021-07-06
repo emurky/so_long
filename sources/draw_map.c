@@ -80,14 +80,15 @@ void	draw_map_squares(t_all *all, char **map)
 				// draw_textured_square(all, pos);
 			if (is_interior(map[j][i]) || map[j][i] == '1')
 				// draw_square(&all->img, SCALE, pos, WHITE);
-				draw_textured_square(all, &all->tex, pos);
+				draw_textured_square(all, &all->tex[WATER], pos);
 			if (map[j][i] == '1')
-				draw_textured_square(all, &all->tex4, pos);
+				draw_textured_square(all, &all->tex[WEED], pos);
 			if (map[j][i] == 'C')
 				// draw_map_sprites(all, &pos);
-				draw_textured_square(all, &all->tex3, pos);
+				draw_textured_square(all, &all->tex[FISH], pos);
 			if (map[j][i] == 'E')
-				draw_square(&all->img, SCALE, pos, RED);
+				// draw_square(&all->img, SCALE, pos, RED);
+				draw_textured_square(all, &all->tex[EXIT], pos);
 			pos.x += SCALE;
 			i++;
 		}
@@ -103,7 +104,10 @@ void	draw_map(t_all *all)
 	pos.x = all->plr.x - SCALE / 2;
 	pos.y = all->plr.y - SCALE / 2;
 	draw_map_squares(all, all->map);
-	draw_textured_square(all, &all->tex2, pos);
+	if (all->flags[L_DIR])
+		draw_textured_square(all, &all->tex[DOLPH_L], pos);
+	else// if (all->keys[RIGHT])
+		draw_textured_square(all, &all->tex[DOLPH_R], pos);
 	// draw_square(&all->img, SCALE, pos, AMBER);
 	// printf("%f posx %f posy\n", all->plr.x, all->plr.y);
 	// cast_rays(all, all->map, RAYCOUNT, SUNRAY);

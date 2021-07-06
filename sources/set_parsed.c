@@ -20,7 +20,7 @@ void	init_player(t_all *all, int i, int j)
 	if (!all->flags[PLR])
 	{
 		set_player_pos(all, i, j);
-		all->plr.dir = M_PI_2;
+		// all->plr.dir = M_PI_2;
 		all->flags[PLR] = true;
 	}
 	else

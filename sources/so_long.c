@@ -8,7 +8,7 @@ void	structure_init(t_all *all)
 	while (i < 5)
 		all->keys[i++] = 0;
 	i = 0;
-	while (i < 3)
+	while (i < 4)
 		all->flags[i++] = false;
 	all->map = NULL;
 	all->line = NULL;
@@ -23,7 +23,7 @@ void	structure_init(t_all *all)
 	// all->tex.addr = mlx_get_data_addr(all->tex.img, &all->tex.bpp, &all->tex.linelen, &all->tex.endian);
 // printf("%f\n", all->tex_coef);
 	all->collectibles = 0;
-	all->movement = 0.0;
+	all->movement = MOVE_SPEED * SCALE;
 	all->moves_counter = 0;
 	all->moves_buffer = 0.0;
 	all->welcome = 120;
@@ -97,6 +97,20 @@ void	check_exit(t_all *all)
 		close_window(all);
 }
 
+void	move_counter(t_all *all)
+{
+	char	*moves_counter_str;
+	char	*inframe_counter;
+
+	moves_counter_str = NULL;
+	inframe_counter = NULL;
+	moves_counter_str = ft_itoa(all->moves_counter);
+	inframe_counter = ft_strjoin(moves_counter_str, " move");
+	mlx_string_put(all->mlx, all->win, 10, 15, BLACK, inframe_counter);
+	free(moves_counter_str);
+	free(inframe_counter);
+}
+
 int	renderer(t_all *all)
 {
 	mlx_clear_window(all->mlx, all->win);
@@ -108,6 +122,7 @@ int	renderer(t_all *all)
 	mlx_put_image_to_window(all->mlx, all->win, all->img.img, 0, 0);
 	welcome_sign(all);
 	check_exit(all);
+	move_counter(all);
 	
 	return (0);
 }
@@ -123,10 +138,12 @@ void	hooks_and_loops(t_all *all)
 
 void	textures_init(t_all *all)
 {
-	my_mlx_tex_to_image(all, &all->tex, "textures/sea_tile.xpm");
-	my_mlx_tex_to_image(all, &all->tex2, "textures/dolphin.xpm");
-	my_mlx_tex_to_image(all, &all->tex3, "textures/fish2.xpm");
-	my_mlx_tex_to_image(all, &all->tex4, "textures/sea_weed.xpm");
+	my_mlx_tex_to_image(all, &all->tex[WATER], "textures/sea_tile.xpm");
+	my_mlx_tex_to_image(all, &all->tex[DOLPH_L], "textures/dolphin_L.xpm");
+	my_mlx_tex_to_image(all, &all->tex[DOLPH_R], "textures/dolphin_R.xpm");
+	my_mlx_tex_to_image(all, &all->tex[FISH], "textures/fish3.xpm");
+	my_mlx_tex_to_image(all, &all->tex[WEED], "textures/sea_weed2.xpm");
+	my_mlx_tex_to_image(all, &all->tex[EXIT], "textures/black_hole.xpm");
 }
 
 int	main(int argc, char **argv)

@@ -36,7 +36,7 @@ typedef struct s_plr
 {
 	double		x;
 	double		y;
-	double		dir;
+	// double		dir;
 }				t_plr;
 
 typedef struct s_spr
@@ -124,17 +124,15 @@ typedef struct s_all
 
 	char		*line;
 	t_pnt		window;
-	int			flags[3];
+	int			flags[4];
 	char		**map;
 	t_pnt		max_map;
 
 	int			collectibles;
 	t_plr		plr;
 
-t_img	tex;
-t_img	tex2;
-t_img	tex3;
-t_img	tex4;
+	t_img		tex[6];
+
 	double		tex_coef;
 	int			pixel;
 	double		movement;

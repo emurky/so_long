@@ -5,7 +5,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <math.h>
+// # include <math.h>
 # include <stdbool.h>
 
 # include "defines.h"
@@ -17,6 +17,10 @@
 # include "libft/libft.h"
 
 void	draw_textured_square(t_all *all, t_img *tex, t_pnt pos);
+
+void		move_player(t_all *all, int dir);
+
+int			wall_collision(t_all *all, int dir);
 
 /*			so_long.c */
 void		structure_init(t_all *all);
@@ -73,10 +77,10 @@ int			isvalid_extension(char *file, const char *ext);
 /*			player_move.c */
 void		set_player_pos(t_all *all, int x, int y);
 void		set_player_dir(t_all *all, double dir);
-int			wall_collision(t_all *all, double dir);
+// int			wall_collision(t_all *all, double dir);
 // int			wall_collision_y(t_all *all, double dir);
 // int			wall_collision_x(t_all *all, double dir);
-void		move_player(t_all *all, double dir);
+// void		move_player(t_all *all, double dir);
 
 /*			key_hooks.c */
 int			print_key(int key, t_all *all);
