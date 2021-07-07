@@ -1,5 +1,17 @@
 #include "so_long.h"
 
+int	isvalid_extension(char *file, const char *ext)
+{
+	int		ext_len;
+	int		file_len;
+
+	ext_len = ft_strlen(ext);
+	file_len = ft_strlen(file);
+	if (ft_strncmp(file + file_len - ext_len, ext, ext_len + 1))
+		return (FALSE);
+	return (TRUE);
+}
+
 void	set_window_size(t_all *all)
 {
 	t_pnt	display_res;
@@ -8,23 +20,27 @@ void	set_window_size(t_all *all)
 	all->window.y = all->max_map.y * SCALE;
 	mlx_get_screen_size(&display_res.x, &display_res.y);
 	if (display_res.x < all->window.x || display_res.y < all->window.y)
-		leave(ERR, ERR_WIN, all, NULL);
-	// all->move_speed =
-	// 	(int)((double)(all->window.x * all->window.y) / SPEED_COEF * 1000);
-	// all->move_speed /= 1000;
-	// printf("%f\n", all->move_speed);
+		leave(ERR, ERR_WIN, all);
 }
 
 void	init_player(t_all *all, int i, int j)
 {
 	if (!all->flags[PLR])
 	{
-		set_player_pos(all, i, j);
-		// all->plr.dir = M_PI_2;
-		all->flags[PLR] = true;
+		all->plr.x = i * SCALE + SCALE / 2.0;
+		all->plr.y = j * SCALE + SCALE / 2.0;
+		all->flags[PLR] = TRUE;
 	}
 	else
-		leave(ERR, ERR_PLR_DBL, all, NULL);
+		leave(ERR, ERR_PLR_DBL, all);
+}
+
+void	init_exit(t_all *all)
+{
+	if (!all->flags[EXT])
+		all->flags[EXT] = TRUE;
+	else
+		leave(ERR, ERR_EXT, all);
 }
 
 void	set_map_chars(t_all *all, char **map)
@@ -41,12 +57,7 @@ void	set_map_chars(t_all *all, char **map)
 			if (map[j][i] == 'P')
 				init_player(all, i, j);
 			else if (map[j][i] == 'E')
-			{
-				if (!all->flags[EXT])
-					all->flags[EXT] = true;
-				else
-					leave(ERR, ERR_EXT, all, NULL);
-			}
+				init_exit(all);
 			else if (map[j][i] == 'C')
 				all->collectibles++;
 			i++;

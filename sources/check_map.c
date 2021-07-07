@@ -8,8 +8,8 @@ int	is_interior(char c)
 int	check_neighbours(t_map map, int row, int col)
 {
 	if (row == 0 || row == map.height - 1 || col == 0 || col == map.width - 1)
-		return (false);
-	return (true);
+		return (FALSE);
+	return (TRUE);
 }
 
 int	check_continuity(t_map map)
@@ -24,12 +24,12 @@ int	check_continuity(t_map map)
 		while (i < map.width)
 		{
 			if (is_interior(map.map[j][i]) && !check_neighbours(map, j, i))
-				return (false);
+				return (FALSE);
 			i++;
 		}
 		j++;
 	}
-	return (true);
+	return (TRUE);
 }
 
 int	check_map_line(t_all *all, char *line)
@@ -41,7 +41,7 @@ int	check_map_line(t_all *all, char *line)
 	if (!(*line))
 	{
 		if (!all->flags[EOM])
-			all->flags[EOM] = true;
+			all->flags[EOM] = TRUE;
 		return (0);
 	}
 	while (*line)
@@ -54,4 +54,21 @@ int	check_map_line(t_all *all, char *line)
 	if (line_len != all->max_map.x)
 		return (-2);
 	return (1);
+}
+
+void	check_collectibles_and_exit(t_all *all)
+{
+	int		i;
+	int		j;
+
+	j = (int)(all->plr.y / SCALE);
+	i = (int)(all->plr.x / SCALE);
+	if (all->map[j][i] == 'C')
+	{
+		all->map[j][i] = '0';
+		all->collectibles--;
+	}
+	if (!all->collectibles && all->map
+		[(int)(all->plr.y / SCALE)][(int)(all->plr.x / SCALE)] == 'E')
+		all->flags[EXT] = TRUE;
 }

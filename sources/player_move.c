@@ -1,22 +1,19 @@
 #include "so_long.h"
 
-void	set_player_pos(t_all *all, int x, int y)
+void	draw_map_sprites(t_all *all, t_pnt *pos)
 {
-	all->plr.x = x * SCALE + SCALE / 2.0;
-	all->plr.y = y * SCALE + SCALE / 2.0;
+	draw_square(&all->img, SCALE, *pos, WHITE);
+	pos->x += (SCALE - SCALE / 2) / 2;
+	pos->y += (SCALE - SCALE / 2) / 2;
+	draw_square(&all->img, SCALE / 2, *pos, PLUM);
+	pos->x -= (SCALE - SCALE / 2) / 2;
+	pos->y -= (SCALE - SCALE / 2) / 2;
 }
-
-// void	set_player_dir(t_all *all, double dir)
-// {
-// 	all->plr.dir = dir;
-// }
 
 int	wall_collision(t_all *all, int dir)
 {
-	// double	dir_x;
-	// double	dir_y;
 	t_plr	check_dir;
-// (void)dir;
+
 	if (dir == UP)
 		check_dir = (t_plr){0, 1};
 	else if (dir == DOWN)
@@ -26,18 +23,10 @@ int	wall_collision(t_all *all, int dir)
 	else if (dir == RIGHT)
 		check_dir = (t_plr){1, 0};
 	return (all->map
-		[(int)(all->plr.y / SCALE - check_dir.y * DIR_COEF)]
-		[(int)(all->plr.x / SCALE + check_dir.x * DIR_COEF)]
+		[(int)(all->plr.y / SCALE - check_dir.y * DIR_K)]
+		[(int)(all->plr.x / SCALE + check_dir.x * DIR_K)]
 		== '1');
 }
-
-// int	wall_collision_x(t_all *all, double dir)
-// {
-// 	return (all->map
-// 		[(int)floor(all->plr.y / SCALE - sin(all->plr.dir + dir) * COLL)]
-// 		[(int)floor(all->plr.x / SCALE + cos(all->plr.dir + dir) * COLL)]
-// 		== '1');
-// }
 
 void	count_movements(t_all *all, double movement)
 {
@@ -46,18 +35,18 @@ void	count_movements(t_all *all, double movement)
 	{
 		all->moves_counter++;
 		all->moves_buffer -= SCALE;
-		printf("%d move\n", all->moves_counter);
+		ft_putnbr_fd(all->moves_counter, 1);
+		ft_putstr_fd(" move\n", 1);
 	}
 }
 
 void	move_player(t_all *all, int dir)
 {
-	// double	movement;
-
-	// movement = 0.0;
-	if (!wall_collision(all, dir))
+	if (!wall_collision(all, dir) && !all->flags[EXT])
 	{
-		count_movements(all, all->movement);
+		if (!(all->keys[UP] && all->keys[DOWN])
+			&& !(all->keys[LEFT] && all->keys[RIGHT]))
+			count_movements(all, all->movement);
 		if (dir == UP)
 			all->plr.y -= all->movement;
 		else if (dir == DOWN)
@@ -66,37 +55,5 @@ void	move_player(t_all *all, int dir)
 			all->plr.x -= all->movement;
 		else if (dir == RIGHT)
 			all->plr.x += all->movement;
-		// all->movement = cos(all->plr.dir + dir) * MOVE_SPEED * SCALE;
-		// printf("%f cos\n", all->movement);
-		// all->plr.x += all->movement;
-		
 	}
-	// if (!wall_collision(all, dir))
-	// {
-	// 	all->movement = sin(all->plr.dir + dir) * MOVE_SPEED * SCALE;
-	// 	// printf("%f sin\n", sin(all->plr.dir + dir));
-	// 	all->plr.y -= all->movement;
-	// 	count_movements(all, all->movement);
-	// }
 }
-
-// void	move_player(t_all *all, double dir)
-// {
-// 	// double	movement;
-
-// 	// movement = 0.0;
-// 	if (!wall_collision(all, dir))
-// 	{
-// 		all->movement = cos(all->plr.dir + dir) * MOVE_SPEED * SCALE;
-// 		// printf("%f cos\n", all->movement);
-// 		all->plr.x += all->movement;
-// 		count_movements(all, all->movement);
-// 	}
-// 	if (!wall_collision(all, dir))
-// 	{
-// 		all->movement = sin(all->plr.dir + dir) * MOVE_SPEED * SCALE;
-// 		// printf("%f sin\n", sin(all->plr.dir + dir));
-// 		all->plr.y -= all->movement;
-// 		count_movements(all, all->movement);
-// 	}
-// }

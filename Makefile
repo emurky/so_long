@@ -4,6 +4,7 @@ DEPSDIR				= ./deps
 
 SRCS				= $(addprefix $(SRCSDIR)/, \
 						so_long.c \
+						interface.c \
 						my_mlx_utils.c \
 						parser.c \
 						set_parsed.c \
