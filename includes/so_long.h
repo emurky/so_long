@@ -81,4 +81,3 @@ void		print_error_exit(char *err_str);
 void		leave(int error, char *err_str, t_all *all);
 
 #endif
-//43

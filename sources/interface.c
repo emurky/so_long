@@ -84,8 +84,7 @@ void	move_counter(t_all *all)
 		free(counter_itoa);
 		leave(ERR, ERR_MALLOC, all);
 	}
-	if (COUNTER)
-		mlx_string_put(all->mlx, all->win, SCALE * 0.5, 15, BLACK, counter);
+	mlx_string_put(all->mlx, all->win, SCALE * 0.5, 15, BLACK, counter);
 	free(counter_itoa);
 	free(counter);
 }

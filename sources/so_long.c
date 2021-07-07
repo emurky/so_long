@@ -44,7 +44,7 @@ int	renderer(t_all *all)
 	mlx_put_image_to_window(all->mlx, all->win, all->img.img, 0, 0);
 	welcome_sign(all);
 	exit_sign(all);
-	if (SCALE >= 42)
+	if (COUNTER && SCALE >= 42)
 		move_counter(all);
 	return (0);
 }
