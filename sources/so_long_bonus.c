@@ -1,4 +1,4 @@
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	structure_init(t_all *all)
 {
@@ -8,7 +8,7 @@ void	structure_init(t_all *all)
 	while (i < 5)
 		all->keys[i++] = 0;
 	i = 0;
-	while (i < 4)
+	while (i < 5)
 		all->flags[i++] = FALSE;
 	all->map = NULL;
 	all->line = NULL;
@@ -23,6 +23,7 @@ void	structure_init(t_all *all)
 	all->moves_buffer = 0.0;
 	all->welcome_counter = 120;
 	all->exit_counter = 120;
+	all->frames = 0;
 }
 
 void	textures_init(t_all *all)
@@ -30,19 +31,26 @@ void	textures_init(t_all *all)
 	my_mlx_tex_to_image(all, &all->tex[WATER], "textures/sea_tile.xpm");
 	my_mlx_tex_to_image(all, &all->tex[DOLPH_L], "textures/dolphin_L.xpm");
 	my_mlx_tex_to_image(all, &all->tex[DOLPH_R], "textures/dolphin_R.xpm");
-	my_mlx_tex_to_image(all, &all->tex[FISH], "textures/fish.xpm");
+	my_mlx_tex_to_image(all, &all->tex[FISH1], "textures/fish1.xpm");
+	my_mlx_tex_to_image(all, &all->tex[FISH2], "textures/fish2.xpm");
+	my_mlx_tex_to_image(all, &all->tex[FISH3], "textures/fish3.xpm");
 	my_mlx_tex_to_image(all, &all->tex[WEED], "textures/sea_weed.xpm");
 	my_mlx_tex_to_image(all, &all->tex[EXIT], "textures/black_hole.xpm");
+	my_mlx_tex_to_image(all, &all->tex[MINE1], "textures/mine1.xpm");
+	my_mlx_tex_to_image(all, &all->tex[MINE2], "textures/mine2.xpm");
+	my_mlx_tex_to_image(all, &all->tex[MINE3], "textures/mine3.xpm");
 }
 
 int	renderer(t_all *all)
 {
+	all->frames++;
 	clear_window(all);
 	keys_handler(all);
 	draw_map(all);
 	check_collectibles_and_exit(all);
 	mlx_put_image_to_window(all->mlx, all->win, all->img.img, 0, 0);
 	welcome_sign(all);
+	check_mine(all);
 	exit_sign(all);
 	if (COUNTER && SCALE >= 42)
 		move_counter(all);

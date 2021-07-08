@@ -9,21 +9,34 @@ SRCS				= $(addprefix $(SRCSDIR)/, \
 						parser.c \
 						set_parsed.c \
 						check_map.c \
-						player_move.c \
 						key_hooks.c \
+						player_move.c \
 						draw_map.c \
 						error.c \
 						)
-
 OBJS				= $(SRCS:.c=.o)
-
 DEPS				= $(SRCS:.c=.d)
+
+B_SRCS				= $(addprefix $(SRCSDIR)/, \
+						so_long_bonus.c \
+						interface.c \
+						my_mlx_utils.c \
+						parser.c \
+						set_parsed.c \
+						check_map_bonus.c \
+						key_hooks.c \
+						player_move_bonus.c \
+						draw_map_bonus.c \
+						error.c \
+						)
+B_OBJS				= $(B_SRCS:.c=.o)
+B_DEPS				= $(B_SRCS:.c=.d)
 
 NAME				= so_long
 
 CC 					= gcc
 RM 					= rm -f
-CFLAGS				= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS				= -Wall -Wextra -Werror -O2 #-g -fsanitize=address
 CPPFLAGS			= -MMD -I. -I./includes
 MLX_FLAGS			= -framework OpenGL -framework AppKit -lz
 
@@ -38,9 +51,13 @@ $(NAME):			$(OBJS)
 					$(MAKE) -C ./mlx -j4
 					$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
 
--include			$(DEPS)
+bonus:				$(B_OBJS)
+					$(MAKE) -C ./libft -j4
+					$(MAKE) -C ./mlx -j4
+					$(CC) $(CFLAGS) $(B_OBJS) $(LIBS) -o $(NAME)
 
-bonus:				all
+-include			$(DEPS)
+-include			$(B_DEPS)
 
 clean:
 					$(MAKE) clean -C ./libft

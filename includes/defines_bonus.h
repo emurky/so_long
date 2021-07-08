@@ -1,12 +1,13 @@
-#ifndef DEFINES_H
-# define DEFINES_H
+#ifndef DEFINES_BONUS_H
+# define DEFINES_BONUS_H
 
 # define TRUE			1
 # define FALSE			0
 
 enum	e_directions	{UP, DOWN, LEFT, RIGHT, ESC};
-enum	e_flags			{EOM, PLR, EXT, L_DIR};
-enum	e_textures		{WATER, WEED, DOLPH_L, DOLPH_R, FISH, EXIT};
+enum	e_flags			{EOM, PLR, EXT, L_DIR, LST};
+enum	e_textures1		{WATER, WEED, DOLPH_L, DOLPH_R, FISH1, FISH2, FISH3};
+enum	e_textures2		{MINE1 = 7, MINE2, MINE3, EXIT};
 
 # define SCALE			84
 # define MOVE_SPEED		0.042
@@ -14,7 +15,7 @@ enum	e_textures		{WATER, WEED, DOLPH_L, DOLPH_R, FISH, EXIT};
 # define DIR_K			0.51
 # define GRID			FALSE
 # define TEXTURED		TRUE
-# define COUNTER		FALSE
+# define COUNTER		TRUE
 
 # define KEY_W			13
 # define KEY_A			0

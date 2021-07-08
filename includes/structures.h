@@ -37,14 +37,14 @@ typedef struct s_all
 	void		*win;
 	t_img		img;
 
-	int			flags[4];
+	int			flags[5];
 	char		*line;
 	t_pnt		window;
 	char		**map;
 	t_pnt		max_map;
 	t_plr		plr;
 	int			collectibles;
-	t_img		tex[6];
+	t_img		tex[11];
 	double		tex_k;
 
 	int			keys[5];
@@ -54,6 +54,7 @@ typedef struct s_all
 	double		moves_buffer;
 	int			welcome_counter;
 	int			exit_counter;
+	int			frames;
 }				t_all;
 
 #endif
