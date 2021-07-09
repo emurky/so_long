@@ -31,7 +31,7 @@ void	textures_init(t_all *all)
 	my_mlx_tex_to_image(all, &all->tex[DOLPH_L], "textures/dolphin_L.xpm");
 	my_mlx_tex_to_image(all, &all->tex[DOLPH_R], "textures/dolphin_R.xpm");
 	my_mlx_tex_to_image(all, &all->tex[FISH], "textures/fish.xpm");
-	my_mlx_tex_to_image(all, &all->tex[WEED], "textures/sea_weed.xpm");
+	my_mlx_tex_to_image(all, &all->tex[WEED], "textures/sea_weed1.xpm");
 	my_mlx_tex_to_image(all, &all->tex[EXIT], "textures/black_hole.xpm");
 }
 

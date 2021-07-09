@@ -22,12 +22,13 @@ B_SRCS				= $(addprefix $(SRCSDIR)/, \
 						interface.c \
 						my_mlx_utils.c \
 						parser.c \
-						set_parsed.c \
+						set_parsed_bonus.c \
 						check_map_bonus.c \
 						key_hooks.c \
 						player_move_bonus.c \
 						draw_map_bonus.c \
 						error.c \
+						witcher_bonus.c \
 						)
 B_OBJS				= $(B_SRCS:.c=.o)
 B_DEPS				= $(B_SRCS:.c=.d)
@@ -62,7 +63,7 @@ bonus:				$(B_OBJS)
 clean:
 					$(MAKE) clean -C ./libft
 					$(MAKE) clean -C ./mlx
-					$(RM) $(OBJS) $(DEPS)
+					$(RM) $(OBJS) $(B_OBJS) $(DEPS) $(B_DEPS)
 
 fclean:				clean
 					$(RM) ./libft/libft.a

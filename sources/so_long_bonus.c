@@ -8,7 +8,7 @@ void	structure_init(t_all *all)
 	while (i < 5)
 		all->keys[i++] = 0;
 	i = 0;
-	while (i < 5)
+	while (i < 6)
 		all->flags[i++] = FALSE;
 	all->map = NULL;
 	all->line = NULL;
@@ -34,7 +34,7 @@ void	textures_init(t_all *all)
 	my_mlx_tex_to_image(all, &all->tex[FISH1], "textures/fish1.xpm");
 	my_mlx_tex_to_image(all, &all->tex[FISH2], "textures/fish2.xpm");
 	my_mlx_tex_to_image(all, &all->tex[FISH3], "textures/fish3.xpm");
-	my_mlx_tex_to_image(all, &all->tex[WEED], "textures/sea_weed.xpm");
+	my_mlx_tex_to_image(all, &all->tex[WEED], "textures/sea_weed2.xpm");
 	my_mlx_tex_to_image(all, &all->tex[EXIT], "textures/black_hole.xpm");
 	my_mlx_tex_to_image(all, &all->tex[MINE1], "textures/mine1.xpm");
 	my_mlx_tex_to_image(all, &all->tex[MINE2], "textures/mine2.xpm");
@@ -49,9 +49,13 @@ int	renderer(t_all *all)
 	draw_map(all);
 	check_collectibles_and_exit(all);
 	mlx_put_image_to_window(all->mlx, all->win, all->img.img, 0, 0);
-	welcome_sign(all);
+	if (!all->flags[WITCHER])
+		welcome_sign(all);
 	check_mine(all);
-	exit_sign(all);
+	if (!all->flags[WITCHER])
+		exit_sign(all);
+	else
+		witcher_signs(all, TRUE);
 	if (COUNTER && SCALE >= 42)
 		move_counter(all);
 	return (0);
@@ -70,14 +74,23 @@ int	main(int argc, char **argv)
 {
 	t_all	all;
 
-	if (argc != 2)
+	if (argc != 2 && argc != 3)
 		print_error_exit("Wrong number of arguments\n");
 	if (!isvalid_extension(argv[1], ".ber"))
 		print_error_exit("Invalid map extension\n");
 	structure_init(&all);
 	parser(&all, argv[1]);
 	mlx_start(&all);
-	textures_init(&all);
+	if (argc == 3 && !ft_strncmp(argv[2], "--witcher", 10))
+	{
+		all.flags[WITCHER] = TRUE;
+		witcher_textures_init(&all);
+	}
+	else if (argv[2])
+		print_error_exit("Wrong second argument\n");
+	else
+		textures_init(&all);
+	printf("%d width %d height\n", all.window.x, all.window.y);
 	hooks_and_loops(&all);
 	return (0);
 }

@@ -18,5 +18,6 @@
 # define CHOC_BROWN		0x006D2D26	/* 109,45,38 */
 # define DARK_BROWN		0x004D1C1B	/* 77,28,27 */
 # define SUNRAY			0x00E6B858	/* 230,184,88 */
+# define LEAFY_GREEN	0x0053B33F	/* 83, 179, 63 */
 
 #endif

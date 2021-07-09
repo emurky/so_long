@@ -37,7 +37,7 @@ typedef struct s_all
 	void		*win;
 	t_img		img;
 
-	int			flags[5];
+	int			flags[6];
 	char		*line;
 	t_pnt		window;
 	char		**map;

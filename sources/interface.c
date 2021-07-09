@@ -18,7 +18,7 @@ void	clear_window(t_all *all)
 	}
 }
 
-void	sign_background(t_all *all, int width)
+void	sign_background(t_all *all, int width, int color)
 {
 	int		i;
 	int		j;
@@ -29,7 +29,7 @@ void	sign_background(t_all *all, int width)
 		i = all->window.x / 2 - width / 2;
 		while (i <= all->window.x / 2 + width / 2)
 		{
-			my_mlx_pixel_put(&all->img, i, j, SKY_BLUE);
+			my_mlx_pixel_put(&all->img, i, j, color);
 			i++;
 		}
 		j++;
@@ -43,7 +43,7 @@ void	welcome_sign(t_all *all)
 	{
 		if (all->welcome_counter > 0)
 		{
-			sign_background(all, 160);
+			sign_background(all, 160, SKY_BLUE);
 			mlx_string_put(all->mlx, all->win,
 				all->window.x / 2 - 68, all->window.y / 2,
 				DARK_BROWN, "Welcome to \"So_long\"");
@@ -54,12 +54,12 @@ void	welcome_sign(t_all *all)
 
 void	exit_sign(t_all *all)
 {
-	if (all->window.y >= 30 && all->window.x >= 300 && all->flags[EXT])
+	if (all->window.y >= 30 && all->window.x >= 342 && all->flags[EXT])
 	{
-		sign_background(all, 342);
+		sign_background(all, 342, SKY_BLUE);
 		mlx_string_put(all->mlx, all->win,
 			all->window.x / 2 - 155, all->window.y / 2,
-			DARK_BROWN, "YOU WON! So long and thanks for all the fish!");
+			DARK_BROWN, "You WON! So long and thanks for all the fish!");
 		all->exit_counter--;
 		if (!all->exit_counter && all->flags[EXT])
 			close_window(all);

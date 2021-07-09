@@ -73,12 +73,15 @@ void	check_mine(t_all *all)
 	if (all->map[(int)(all->plr.y / SCALE)][(int)(all->plr.x / SCALE)] == 'M')
 	{
 		all->flags[LST] = TRUE;
-		if (all->window.y >= 30 && all->window.x >= 164 && all->flags[LST])
+		if (all->window.y >= 30 && all->window.x >= 242 && all->flags[LST])
 		{
-			sign_background(all, 163);
-			mlx_string_put(all->mlx, all->win,
-				all->window.x / 2 - 68, all->window.y / 2,
-				DARK_BROWN, "YOU LOST! So long...");
+			sign_background(all, 242, SKY_BLUE);
+			if (all->flags[WITCHER])
+				witcher_signs(all, FALSE);
+			else
+				mlx_string_put(all->mlx, all->win,
+					all->window.x / 2 - 68, all->window.y / 2,
+					DARK_BROWN, "You LOST! So long...");
 			all->exit_counter--;
 			if (!all->exit_counter && all->flags[LST])
 				close_window(all);

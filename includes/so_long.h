@@ -21,7 +21,7 @@ void		hooks_and_loops(t_all *all);
 
 /*			interface.c */
 void		clear_window(t_all *all);
-void		sign_background(t_all *all, int width);
+void		sign_background(t_all *all, int width, int color);
 void		welcome_sign(t_all *all);
 void		exit_sign(t_all *all);
 void		move_counter(t_all *all);

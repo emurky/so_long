@@ -38,8 +38,6 @@ void	check_map(t_all *all)
 		leave(ERR, ERR_EXT_NON, all);
 	if (!all->collectibles)
 		leave(ERR, ERR_COL, all);
-	all->window.x = all->max_map.x * SCALE;
-	all->window.y = all->max_map.y * SCALE;
 	all->flags[EXT] = FALSE;
 }
 
