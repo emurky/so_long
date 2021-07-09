@@ -9,7 +9,7 @@ enum	e_flags			{EOM, PLR, EXT, L_DIR, LST, WITCHER};
 enum	e_textures1		{WATER, WEED, DOLPH_L, DOLPH_R, FISH1, FISH2, FISH3};
 enum	e_textures2		{MINE1 = 7, MINE2, MINE3, EXIT};
 
-# define SCALE			16
+# define SCALE			84
 # define MOVE_SPEED		0.042
 # define TEX_RES		128
 # define DIR_K			0.51
