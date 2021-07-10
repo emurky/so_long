@@ -86,7 +86,7 @@ void	parser(t_all *all, char *file_cub)
 	int		fd;
 	int		line_read;
 
-	fd = open(file_cub, O_RDWR);
+	fd = open(file_cub, O_RDONLY);
 	if (fd < 0)
 		print_error_exit("Cannot open map file\n");
 	line_read = get_next_line(fd, &all->line);
