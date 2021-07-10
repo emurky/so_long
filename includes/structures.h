@@ -1,11 +1,17 @@
 #ifndef STRUCTURES_H
 # define STRUCTURES_H 
 
-typedef struct s_pnt
+typedef struct s_int
 {
 	int			x;
 	int			y;
-}				t_pnt;
+}				t_int;
+
+typedef struct s_dbl
+{
+	double		x;
+	double		y;
+}				t_dbl;
 
 typedef struct s_map
 {
@@ -23,13 +29,8 @@ typedef struct s_img
 	int			endian;
 	int			w;
 	int			h;
+	t_dbl		tex_k;
 }				t_img;
-
-typedef struct s_plr
-{
-	double		x;
-	double		y;
-}				t_plr;
 
 typedef struct s_all
 {
@@ -39,13 +40,12 @@ typedef struct s_all
 
 	int			flags[6];
 	char		*line;
-	t_pnt		window;
+	t_int		window;
 	char		**map;
-	t_pnt		max_map;
-	t_plr		plr;
+	t_int		max_map;
+	t_dbl		plr;
 	int			collectibles;
-	t_img		tex[12];
-	double		tex_k;
+	t_img		tex[11];
 
 	int			keys[5];
 	double		movement;

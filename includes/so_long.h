@@ -60,15 +60,16 @@ int			key_released(int key, t_all *all);
 void		keys_handler(t_all *all);
 
 /*			player_move.c */
+int			scaled(double pos);
 int			wall_collision(t_all *all, int dir);
 void		count_movements(t_all *all, double movement);
 void		move_player(t_all *all, int dir);
 
 /*			draw_map.c */
-void		draw_square(t_img *img, int width, t_pnt pos, int color);
-void		draw_map_sprites(t_all *all, t_pnt *pos);	//in player_move.c
-void		draw_textured_square(t_all *all, t_img *tex, t_pnt pos);
-void		map_chars_switcher(t_all *all, char map_char, t_pnt pos);
+void		draw_square(t_img *img, int width, t_int pos, int color);
+void		draw_map_sprites(t_all *all, t_int *pos);	//in player_move.c
+void		draw_textured_square(t_all *all, t_img *tex, t_int pos);
+void		map_chars_switcher(t_all *all, char map_char, t_int pos);
 void		draw_map_squares(t_all *all, char **map);
 void		draw_map(t_all *all);
 

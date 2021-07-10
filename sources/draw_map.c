@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-void	draw_square(t_img *img, int width, t_pnt pos, int color)
+void	draw_square(t_img *img, int width, t_int pos, int color)
 {
 	int		i;
 	int		j;
@@ -18,7 +18,7 @@ void	draw_square(t_img *img, int width, t_pnt pos, int color)
 	}
 }
 
-void	draw_textured_square(t_all *all, t_img *tex, t_pnt pos)
+void	draw_textured_square(t_all *all, t_img *tex, t_int pos)
 {
 	int		i;
 	int		j;
@@ -31,8 +31,8 @@ void	draw_textured_square(t_all *all, t_img *tex, t_pnt pos)
 		while (i < SCALE + pos.x - GRID)
 		{
 			pixel = my_mlx_pixel_get
-				(tex, (i - pos.x) / all->tex_k,
-					(j - pos.y) / all->tex_k);
+				(tex, (i - pos.x) / tex->tex_k.x,
+					(j - pos.y) / tex->tex_k.y);
 			if (!is_transparent(pixel))
 				my_mlx_pixel_put(&all->img, i, j, pixel);
 			i++;
@@ -41,7 +41,7 @@ void	draw_textured_square(t_all *all, t_img *tex, t_pnt pos)
 	}
 }
 
-void	map_chars_switcher(t_all *all, char map_char, t_pnt pos)
+void	map_chars_switcher(t_all *all, char map_char, t_int pos)
 {
 	if (TEXTURED)
 	{
@@ -71,7 +71,7 @@ void	draw_map_squares(t_all *all, char **map)
 {
 	int		i;
 	int		j;
-	t_pnt	pos;
+	t_int	pos;
 
 	j = 0;
 	pos.y = 0;
@@ -92,7 +92,7 @@ void	draw_map_squares(t_all *all, char **map)
 
 void	draw_map(t_all *all)
 {
-	t_pnt	pos;
+	t_int	pos;
 
 	pos.x = all->plr.x - SCALE / 2;
 	pos.y = all->plr.y - SCALE / 2;

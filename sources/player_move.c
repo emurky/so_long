@@ -1,6 +1,11 @@
 #include "so_long.h"
 
-void	draw_map_sprites(t_all *all, t_pnt *pos)
+int	scaled(double pos)
+{
+	return (pos / SCALE);
+}
+
+void	draw_map_sprites(t_all *all, t_int *pos)
 {
 	draw_square(&all->img, SCALE, *pos, WHITE);
 	pos->x += (SCALE - SCALE / 2) / 2;
@@ -12,16 +17,16 @@ void	draw_map_sprites(t_all *all, t_pnt *pos)
 
 int	wall_collision(t_all *all, int dir)
 {
-	t_plr	check_dir;
+	t_dbl	check_dir;
 
 	if (dir == UP)
-		check_dir = (t_plr){0, 1};
+		check_dir = (t_dbl){0, 1};
 	else if (dir == DOWN)
-		check_dir = (t_plr){0, -1};
+		check_dir = (t_dbl){0, -1};
 	else if (dir == LEFT)
-		check_dir = (t_plr){-1, 0};
+		check_dir = (t_dbl){-1, 0};
 	else if (dir == RIGHT)
-		check_dir = (t_plr){1, 0};
+		check_dir = (t_dbl){1, 0};
 	return (all->map
 		[(int)(all->plr.y / SCALE - check_dir.y * DIR_K)]
 		[(int)(all->plr.x / SCALE + check_dir.x * DIR_K)]

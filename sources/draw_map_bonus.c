@@ -1,6 +1,6 @@
 #include "so_long_bonus.h"
 
-void	draw_textured_square(t_all *all, t_img *tex, t_pnt pos)
+void	draw_textured_square(t_all *all, t_img *tex, t_int pos)
 {
 	int		i;
 	int		j;
@@ -13,8 +13,8 @@ void	draw_textured_square(t_all *all, t_img *tex, t_pnt pos)
 		while (i < SCALE + pos.x - GRID)
 		{
 			pixel = my_mlx_pixel_get
-				(tex, (i - pos.x) / all->tex_k,
-					(j - pos.y) / all->tex_k);
+				(tex, (i - pos.x) / tex->tex_k.x,
+					(j - pos.y) / tex->tex_k.y);
 			if (!is_transparent(pixel))
 				my_mlx_pixel_put(&all->img, i, j, pixel);
 			i++;
@@ -23,7 +23,7 @@ void	draw_textured_square(t_all *all, t_img *tex, t_pnt pos)
 	}
 }
 
-void	draw_mines(t_all *all, t_pnt pos)
+void	draw_mines(t_all *all, t_int pos)
 {
 	if (all->frames % 42 < 7)
 		draw_textured_square(all, &all->tex[MINE1], pos);
@@ -39,7 +39,7 @@ void	draw_mines(t_all *all, t_pnt pos)
 		draw_textured_square(all, &all->tex[MINE1], pos);
 }
 
-void	map_chars_switcher(t_all *all, char map_char, t_pnt pos)
+void	map_chars_switcher(t_all *all, char map_char, t_int pos)
 {
 	if (is_interior(map_char) || map_char == '1')
 		draw_textured_square(all, &all->tex[WATER], pos);
@@ -70,7 +70,7 @@ void	draw_map_squares(t_all *all, char **map)
 {
 	int		i;
 	int		j;
-	t_pnt	pos;
+	t_int	pos;
 
 	j = 0;
 	pos.y = 0;
@@ -91,7 +91,7 @@ void	draw_map_squares(t_all *all, char **map)
 
 void	draw_map(t_all *all)
 {
-	t_pnt	pos;
+	t_int	pos;
 
 	pos.x = all->plr.x - SCALE / 2;
 	pos.y = all->plr.y - SCALE / 2;

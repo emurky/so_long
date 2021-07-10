@@ -29,7 +29,7 @@ void		welcome_sign(t_all *all);
 void		exit_sign(t_all *all);
 void		move_counter(t_all *all);
 
-/*			my_mlx_utils.c */
+/*			my_mlx_utils_bonus.c */
 int			is_transparent(int trgb);
 void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int			my_mlx_pixel_get(t_img *img, int x, int y);
@@ -43,7 +43,7 @@ void		get_map_line(t_all *all, t_list **head, int line_read);
 void		parse_map(t_all *all, int fd, int line_read);
 void		parser(t_all *all, char *cub);
 
-/*			set_parsed.c */
+/*			set_parsed_bonus.c */
 int			isvalid_extension(char *file, const char *ext);
 void		set_window_size(t_all *all);
 void		init_player(t_all *all, int i, int j);
@@ -64,14 +64,15 @@ int			key_released(int key, t_all *all);
 void		keys_handler(t_all *all);
 
 /*			player_move_bonus.c */
+int			scaled(double pos);
 int			wall_collision(t_all *all, int dir);
 void		count_movements(t_all *all, double movement);
 void		move_player(t_all *all, int dir);
 
-/*			draw_map.c */
-void		draw_textured_square(t_all *all, t_img *tex, t_pnt pos);
-void		draw_mines(t_all *all, t_pnt pos);
-void		map_chars_switcher(t_all *all, char map_char, t_pnt pos);
+/*			draw_map_bonus.c */
+void		draw_textured_square(t_all *all, t_img *tex, t_int pos);
+void		draw_mines(t_all *all, t_int pos);
+void		map_chars_switcher(t_all *all, char map_char, t_int pos);
 void		draw_map_squares(t_all *all, char **map);
 void		draw_map(t_all *all);
 

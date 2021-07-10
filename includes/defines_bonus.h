@@ -11,7 +11,6 @@ enum	e_textures2		{MINE1 = 7, MINE2, MINE3, EXIT};
 
 # define SCALE			84
 # define MOVE_SPEED		0.042
-# define TEX_RES		128
 # define DIR_K			0.51
 # define GRID			FALSE
 # define TEXTURED		TRUE

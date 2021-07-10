@@ -10,7 +10,6 @@ enum	e_textures		{WATER, WEED, DOLPH_L, DOLPH_R, FISH, EXIT};
 
 # define SCALE			84
 # define MOVE_SPEED		0.042
-# define TEX_RES		128
 # define DIR_K			0.51
 # define GRID			FALSE
 # define TEXTURED		TRUE

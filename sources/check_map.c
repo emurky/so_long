@@ -61,14 +61,14 @@ void	check_collectibles_and_exit(t_all *all)
 	int		i;
 	int		j;
 
-	j = (int)(all->plr.y / SCALE);
-	i = (int)(all->plr.x / SCALE);
+	j = scaled(all->plr.y);
+	i = scaled(all->plr.x);
 	if (all->map[j][i] == 'C')
 	{
 		all->map[j][i] = '0';
 		all->collectibles--;
 	}
 	if (!all->collectibles && all->map
-		[(int)(all->plr.y / SCALE)][(int)(all->plr.x / SCALE)] == 'E')
+		[scaled(all->plr.y)][scaled(all->plr.x)] == 'E')
 		all->flags[EXT] = TRUE;
 }

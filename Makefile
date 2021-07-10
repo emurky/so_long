@@ -19,7 +19,7 @@ DEPS				= $(SRCS:.c=.d)
 B_SRCS				= $(addprefix $(SRCSDIR)/, \
 						so_long_bonus.c \
 						interface.c \
-						my_mlx_utils.c \
+						my_mlx_utils_bonus.c \
 						parser.c \
 						set_parsed_bonus.c \
 						check_map_bonus.c \

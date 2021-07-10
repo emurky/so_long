@@ -14,7 +14,7 @@ int	isvalid_extension(char *file, const char *ext)
 
 void	set_window_size(t_all *all)
 {
-	t_pnt	display_res;
+	t_int	display_res;
 
 	all->window.x = all->max_map.x * SCALE;
 	all->window.y = all->max_map.y * SCALE;

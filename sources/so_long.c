@@ -15,8 +15,7 @@ void	structure_init(t_all *all)
 	all->mlx = NULL;
 	all->img.img = NULL;
 	all->win = NULL;
-	all->max_map = (t_pnt){0, 0};
-	all->tex_k = (double)SCALE / (double)TEX_RES;
+	all->max_map = (t_int){0, 0};
 	all->collectibles = 0;
 	all->movement = MOVE_SPEED * SCALE;
 	all->moves_counter = 0;

@@ -15,8 +15,7 @@ void	structure_init(t_all *all)
 	all->mlx = NULL;
 	all->img.img = NULL;
 	all->win = NULL;
-	all->max_map = (t_pnt){0, 0};
-	all->tex_k = (double)SCALE / (double)TEX_RES;
+	all->max_map = (t_int){0, 0};
 	all->collectibles = 0;
 	all->movement = MOVE_SPEED * SCALE;
 	all->moves_counter = 0;
@@ -34,7 +33,7 @@ void	textures_init(t_all *all)
 	my_mlx_tex_to_image(all, &all->tex[FISH1], "textures/fish1.xpm");
 	my_mlx_tex_to_image(all, &all->tex[FISH2], "textures/fish2.xpm");
 	my_mlx_tex_to_image(all, &all->tex[FISH3], "textures/fish3.xpm");
-	my_mlx_tex_to_image(all, &all->tex[WEED], "textures/sea_weed2.xpm");
+	my_mlx_tex_to_image(all, &all->tex[WEED], "textures/sea_weed1.xpm");
 	my_mlx_tex_to_image(all, &all->tex[EXIT], "textures/black_hole.xpm");
 	my_mlx_tex_to_image(all, &all->tex[MINE1], "textures/mine1.xpm");
 	my_mlx_tex_to_image(all, &all->tex[MINE2], "textures/mine2.xpm");
