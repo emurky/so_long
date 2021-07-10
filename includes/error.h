@@ -15,6 +15,7 @@
 # define ERR_EXT		"Only one exit could exist on the map\n"
 # define ERR_EXT_NON	"There must be at least one exit on the map\n"
 # define ERR_COL		"There must be at least one collectible\n"
-# define ERR_WIN		"Map is too big and cannot be shown on this screen\n"
+# define ERR_WIN		"Map is too big and cannot be shown on this screen. \
+Please decrease SCALE in \"includes/defines.h\"\n"
 
 #endif
