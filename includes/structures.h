@@ -44,12 +44,11 @@ typedef struct s_all
 	t_pnt		max_map;
 	t_plr		plr;
 	int			collectibles;
-	t_img		tex[11];
+	t_img		tex[12];
 	double		tex_k;
 
 	int			keys[5];
 	double		movement;
-	double		move_speed;
 	int			moves_counter;
 	double		moves_buffer;
 	int			welcome_counter;

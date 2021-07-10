@@ -90,7 +90,6 @@ int	main(int argc, char **argv)
 		print_error_exit("Wrong second argument\n");
 	else
 		textures_init(&all);
-	printf("%d width %d height\n", all.window.x, all.window.y);
 	hooks_and_loops(&all);
 	return (0);
 }

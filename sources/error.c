@@ -27,7 +27,7 @@ void	clean_mlx(t_all *all)
 		mlx_destroy_window(all->mlx, all->win);
 	if (all->mlx && all->img.img)
 		mlx_destroy_image(all->mlx, all->img.img);
-	while (i < 6)
+	while (i <= EXIT)
 	{
 		if (all->mlx && all->tex[i].img)
 			mlx_destroy_image(all->mlx, all->tex[i].img);

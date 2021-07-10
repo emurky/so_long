@@ -12,8 +12,7 @@ SRCS				= $(addprefix $(SRCSDIR)/, \
 						key_hooks.c \
 						player_move.c \
 						draw_map.c \
-						error.c \
-						)
+						error.c )
 OBJS				= $(SRCS:.c=.o)
 DEPS				= $(SRCS:.c=.d)
 
@@ -28,8 +27,7 @@ B_SRCS				= $(addprefix $(SRCSDIR)/, \
 						player_move_bonus.c \
 						draw_map_bonus.c \
 						error.c \
-						witcher_bonus.c \
-						)
+						witcher_bonus.c )
 B_OBJS				= $(B_SRCS:.c=.o)
 B_DEPS				= $(B_SRCS:.c=.d)
 

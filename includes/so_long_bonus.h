@@ -1,7 +1,6 @@
 #ifndef SO_LONG_BONUS_H
 # define SO_LONG_BONUS_H
 
-# include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -13,6 +12,7 @@
 # include "mlx/mlx.h"
 # include "libft/libft.h"
 
+/*			witcher_bonus.c */
 void		witcher_textures_init(t_all *all);
 void		witcher_signs(t_all *all, int flag);
 
